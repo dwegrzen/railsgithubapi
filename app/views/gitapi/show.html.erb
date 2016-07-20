@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1><%= params[:user]%>'s Github Repositories</h1>
+      <ul class="pagination">
+        <% @repopages.times do |x| %>
+        <% if params[:page] == (x+1).to_s %>
+        <li class="active">
+          <%else%>
+        <li>
+          <%end%>
+        <%= link_to "Page #{x + 1}", page: x + 1 %></li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 picture">
+      <%= image_tag @repodata.first[:owner][:avatar_url], class:"image-responsive center-block", id:"showpic" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+       <table class="table">
+         <thead>
+           <tr>
+             <th>GitHub Repository List</th>
+             <th>Description</th>
+           </tr>
+         </thead>
+
+         <tbody>
+           <% @repodata.each do |repodata| %>
+             <tr>
+               <td class="text-right"><%= link_to repodata.name, repodata.html_url %></td>
+               <td class="text-left"><%= repodata.description %></td>
+           <% end %>
+         </tbody>
+      </table>
+    </div>
+  </div>
