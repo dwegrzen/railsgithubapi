@@ -27,6 +27,9 @@
            <tr>
              <th>GitHub Repository List</th>
              <th>Description</th>
+             <th>Created on:</th>
+             <th>Last Update:</th>
+
            </tr>
          </thead>
 
@@ -35,6 +38,9 @@
              <tr>
                <td class="text-right"><%= link_to repodata.name, repodata.html_url %></td>
                <td class="text-left"><%= repodata.description %></td>
+               <td class="text-left"><%= repodata.created_at.strftime("%m.%d.%y") %></td>
+               <td class="text-left"><%= repodata.updated_at.strftime("%m.%d.%y") %></td>
+             </tr>
            <% end %>
          </tbody>
       </table>
