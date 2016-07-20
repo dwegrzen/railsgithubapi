@@ -1,5 +1,6 @@
 class GitapiController < ApplicationController
 
+  before_action :set_page
 
   def index
     client = Octokit::Client.new(:access_token => ENV["octokit_token"])
@@ -15,6 +16,14 @@ class GitapiController < ApplicationController
     @repodata = @repos[:items]
   end
 
+
+
+  private
+  def set_page
+    unless params[:page]
+      params[:page]="1"
+    end
+  end
 
 
 

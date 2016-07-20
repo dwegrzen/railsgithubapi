@@ -6,7 +6,7 @@
 
     <ul class="pagination">
       <% @pages.times do |x| %>
-      <% if params[:page] == ((x+1).to_s) %>
+      <% if params[:page] == ((x+1).to_s||1) %>
       <li class="active">
         <%else%>
       <li>
@@ -17,7 +17,7 @@
   </div>
   <div class="row">
     <div class="col-sm-10">
-       <table class="table text-center">
+       <table class="table text-left">
          <thead>
            <tr>
              <th></th>
@@ -31,9 +31,9 @@
          <tbody>
            <% @userdata.each do |userdata| %>
              <tr>
-               <td><%= image_tag userdata.avatar_url, class:"image-responsive", id:"avatar" %></td>
+               <td><%= image_tag userdata.avatar_url, class:"image-responsive img-rounded", id:"avatar" %></td>
                <td><%= link_to userdata.login, userdata.html_url %></td>
-               <td> joined on <%= userdata.created_at.strftime("%b %e, %l:%M %p") %> </td>
+               <td> joined on <%= userdata.created_at.strftime("%b %d, %Y") %> </td>
                <td><%= link_to userdata.public_repos, show_path(userdata.login) %></td>
                <td><%= userdata.followers %></td>
            <% end %>
